@@ -31,8 +31,5 @@ function theGame() {
       
     }, 1000);
   };
-
-
 }
-  
 
