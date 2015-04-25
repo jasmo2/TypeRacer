@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'scores/create'
-
-  root 'users#index'
-  get 'users/game'
   devise_for :users
+  root 'users#index'
+
+  authenticated :user do
+    get 'game', to: 'scores#game', as: :game
+    post 'scores/create'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,28 @@
+<div id="the-game" class="game">
+	<div class="game-timer">
+		tiempo restante:
+		<span id="game-timer-numbers"></span>
+	</div>
+
+	<div class="game-slider">
+		<div class="hidden-div"></div>
+		<input id="slider" type="range" min="0" max="100" value="0" step="10" readonly="true">
+	</div>
+
+	
+	<h3>tu puntaje: <span class="user-score">0</span></h3>
+	<div class="game-text left">
+		<h4>Texto a recorrer:</h4>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dicta quae eveniet, quo 
+		unde labore iste, laborum tempore asperiores culpa recusandae, iure esse quod totam?
+	</div>
+	<div class="game-input">
+		<form action="">
+			<input type="hidden" value="<%= current_user.id %>">
+			<div class="form-group">
+				<input type="text" class="form-control" id="game-input" placeholder="ingresa cada palabra y oprime la barra espaciadora para continuar con la siguiente">
+			</div>
+		</form>
+	</div>
+</div>
+
