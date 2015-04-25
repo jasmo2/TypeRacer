@@ -7,7 +7,7 @@ $( document ).ready(function() {
 // game countdown
 function theGame() {
   // slider
-  this.$slider = $('#tlider');
+  this.$slider = $('#slider');
   // game timer
   this.init = function(){
     var getTime = function(sg) {
