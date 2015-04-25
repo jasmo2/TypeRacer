@@ -9,5 +9,6 @@ class ScoresController < ApplicationController
     
     # params(:score => {:user_id => current_user.id })
     params.require(:score).permit(:score,:user_id)
+
   end
 end

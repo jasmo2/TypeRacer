@@ -39,4 +39,14 @@
   .game-text {
     margin: 25px 0;
   }
+  .game-slider {
+    position: relative;
+  }
+  .hidden-div {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+  }
+
 }

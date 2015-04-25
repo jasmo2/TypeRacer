@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+
   devise_for :users
   root 'users#index'
 
   authenticated :user do
-
-    get 'users/game'
+    get 'game', to: 'scores#game', as: :game
     post 'scores/create'
   end
 

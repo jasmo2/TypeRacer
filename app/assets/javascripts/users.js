@@ -1,16 +1,21 @@
 $( document ).ready(function() {
-	// slider
-	$('#slider-step').noUiSlider({
-		start: [ 0 ],
-		step: 1000,
-		range: {
-			'min': [  0 ],
-			'max': [ 10000 ]
-		}
-	});
+  
 
-  // game countdown
-  (function(){
+
+});
+
+// game countdown
+function theGame() {
+  // slider
+  this.$slider = $('#slider');
+  // game timer
+  this.init = function(){
+    var getTime = function(sg) {
+      var minutes = Math.floor(sg / 60);
+      var leftover = sg - minutes * 60;
+      leftover = (leftover < 10) ? "0" + leftover: leftover
+      return (minutes + ':' + leftover);
+    };
     var counter = 120;
     var span = document.getElementById("game-timer-numbers");
     setInterval(function() {
@@ -25,14 +30,9 @@ $( document ).ready(function() {
       }
       
     }, 1000);
-  })();
-  var getTime = function(sg) {
-    var minutes = Math.floor(sg / 60);
-    var leftover = sg - minutes * 60;
-    leftover = (leftover < 10) ? "0" + leftover: leftover
-    return (minutes + ':' + leftover);
   };
 
-});
 
+}
+  
 
