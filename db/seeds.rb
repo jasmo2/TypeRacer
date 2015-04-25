@@ -14,7 +14,7 @@ for iteration in 1...22
   f_text = Faker::Lorem.paragraph(2)
   # prng.rand(0...4)
   User.create(username: f_name, email: f_email, password: "12345678")
-  Game.create(text: f_text)
+  Game.create(textGame: f_text)
   Score.create(score: prng.rand(0...100), user_id: prng.rand(1..22))
 end
 
