@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get 'scores/create'
 
-  get 'users/index'
+  root 'users#index'
   get 'users/game'
-
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Type Horse Racer</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+      <div class="navbar-form navbar-right">
+        <% if user_signed_in? %>
+            <div class="form-group">
+              <h4 class="h_navbar">Bienvenido: <%= current_user.username %></h4>
+            </div>
+            <div class="form-group">
+              <%= link_to "Salir", destroy_user_session_path, :method => :delete,class: "btn btn-warning" %>
+            </div>
+        <% else %>
+          <%=render 'devise/sessions/new'%>
+        <% end %>
+      </div>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
