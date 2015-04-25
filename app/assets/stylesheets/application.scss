@@ -13,28 +13,5 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-
-// index admin
-.custom {
-	.centered {
-		text-align: center;
-	}
-	.right {
-		text-align: right;
-	}
-	.bold {
-		font-weight: bold;
-	}
-	.header-ranking {
-		width: 90px;
-	}
-	.btn-big {
-		padding: 15px;
-		width: 200px;
-		text-transform: uppercase;
-		font-weight: bold;
-		font-size: 1.2em;
-		margin: 30px 0;
-	}
-}
+@import "users";
+@import "no-ui-slider";
