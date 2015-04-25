@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'games/game'
+
   get 'scores/create'
+  get 'game', to: 'scores#game', as: :game
 
   root 'users#index'
-  get 'users/game'
+  get 'games/game'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
