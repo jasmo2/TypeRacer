@@ -10,14 +10,18 @@
 	</div>
 
 	
-	<h3>tu puntaje: <span class="user-score">0</span></h3>
+	<h3>tu puntaje: <span id="user-score">0</span></h3>
 	<div class="left">
 		<h4>Texto a recorrer:</h4>
 		<p class="game-text" id="game-text"><%= @game.textGame %></p>
+		<div class="active-word">
+			<span>Palabra activa:</span>
+			<span class="no-block" id="game-active-word"></span>
+		</div>
 	</div>
 	<div class="game-input">
 		<form action="">
-			<input type="hidden" value="<%= current_user.id %>">
+			<input type="hidden" id="current-user-id" value="<%= current_user.id %>">
 			<div class="form-group">
 				<input type="text" class="form-control" id="game-input" placeholder="ingresa cada palabra y oprime la barra espaciadora para continuar con la siguiente">
 			</div>

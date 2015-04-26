@@ -4,6 +4,7 @@ function theGame(args) {
   this.$gameInput = args.gameInput;
   var gameInput = this.$gameInput;
   var $gameSlider = args.gameSlider;
+  var $gameActiveWord = args.gameActiveWord;
   var theText = this.$text
   this.wordCount = 0 , this.textCount = 0;
   //text Array
@@ -12,12 +13,36 @@ function theGame(args) {
     , wordArray = txt.replace(/[^\w ]/g, "").split(/\s+/); 
     return wordArray;
   };
+  // active word en inicio
+  $gameActiveWord.text(textArray()[0]);
+
+
+  //post
+  var theUserScore = function () {
+    var theScore = $("#user-score").text(),
+        currentUserId = $("#current-user-id").val();
+    $.ajax({
+          type: "POST",
+          url: "scores/create",
+          dataType: "json",
+          contentType: 'application/json',
+          data: JSON.stringify({ "score": { "score": theScore, "user_id": currentUserId } }),
+          success: function (data) {
+            console.log(theScore);
+            return false
+          },
+          error: function (data) {
+            return false
+          }
+        });
+  }
 
   //text Length
   var textLength = textArray().length;
   var paso = function(word) {
     return (word * Math.floor(100/textLength));
   }
+
 
   //text char
   var gWordArray = function (word) {
@@ -32,15 +57,23 @@ function theGame(args) {
       eChar = String.fromCharCode(eChar);
     }
     var wordArray = gWordArray(textArray()[this.textCount]);
-    if (newWord && e.which === 32 && this.wordCount == wordArray.length +1) {
+    if (newWord && e.which === 32 && this.wordCount == wordArray.length ) {
       // debugger
       this.$gameInput.val("");
       this.wordCount = 0;
       this.textCount += 1;
       $gameSlider.val(paso(this.textCount));
+      $gameActiveWord.text(textArray()[this.textCount]);
       gameInput.css({
         "background" : "rgba(117,255,7,0)"
       });
+      //save user score
+      if (this.textCount == textArray().length) {
+        theUserScore();
+        window.location.reload();
+      };
+      //user score
+      $("#user-score").text(paso(this.textCount));
     }else if (eChar === wordArray[this.wordCount]){
       if ($gameInput.val().length === this.wordCount || this.wordCount + 1 == $gameInput.val().length)
       {
@@ -62,7 +95,7 @@ function theGame(args) {
   this.$slider = $('#slider');
 
   // game timer
-  this.initializer = function(){
+  var initializer = function(){
     var getTime = function(sg) {
       var minutes = Math.floor(sg / 60);
       var leftover = sg - minutes * 60;
@@ -78,10 +111,34 @@ function theGame(args) {
       }
       // Display 'counter' wherever you want to display it.
       if (counter === 0) {
-          alert('el tiempo ha terminado');
-          clearInterval(counter);
+        //guardar actual user score
+        theUserScore();
+        if(!alert('¡El tiempo ha terminado!' + ' Tu puntaje fue ' +  $("#user-score").text() )){window.location.reload();}
+        clearInterval(counter);
       } 
     }, 1000);
   };
+
+
+  //preinitializer
+  this.preinitializer = function() {
+    $("#game-input").attr("disabled", "true");
+    var counter = 3;
+    var span = document.getElementById("preinitializer-counter");
+    setInterval(function() {
+      counter--;
+      if (counter >= 0) {
+        span.innerHTML = counter;
+      }
+      // Display 'counter' wherever you want to display it.
+      if (counter === 0) {
+        $(".la-modal").remove();
+        $("#game-input").removeAttr("disabled", "true").focus();
+        initializer();
+      } 
+    }, 1000);
+  };
+
+  
 }
 
