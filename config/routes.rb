@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'users/list' => 'users#list'
     resources :users, only: [:show]
     post 'scores/create'
+    get 'scores/all_time_highscores'
 
   end
 
