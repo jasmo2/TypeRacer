@@ -1,5 +1,7 @@
 class ScoresController < ApplicationController
   def create
+    puts "-----------------------------------------------------------------"
+    puts scores_params
     @score = Score.new(scores_params)
     # @score.save
     @current_user = current_user

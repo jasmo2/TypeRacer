@@ -16,6 +16,27 @@ function theGame(args) {
   // active word en inicio
   $gameActiveWord.text(textArray()[0]);
 
+
+  //post
+  var theUserScore = function () {
+    var theScore = $("#user-score").text(),
+        currentUserId = $("#current-user-id").val();
+    $.ajax({
+          type: "POST",
+          url: "scores/create",
+          dataType: "json",
+          contentType: 'application/json',
+          data: JSON.stringify({ "score": { "score": theScore, "user_id": currentUserId } }),
+          success: function (data) {
+            console.log(theScore);
+            return false
+          },
+          error: function (data) {
+            return false
+          }
+        });
+  }
+
   //text Length
   var textLength = textArray().length;
   var paso = function(word) {
@@ -46,6 +67,11 @@ function theGame(args) {
       gameInput.css({
         "background" : "rgba(117,255,7,0)"
       });
+      //save user score
+      if (this.textCount == textArray().length) {
+        theUserScore();
+        window.location.reload();
+      };
       //user score
       $("#user-score").text(paso(this.textCount));
     }else if (eChar === wordArray[this.wordCount]){
@@ -86,22 +112,7 @@ function theGame(args) {
       // Display 'counter' wherever you want to display it.
       if (counter === 0) {
         //guardar actual user score
-        var theScore = $("#user-score").text(),
-        currentUserId = $("#current-user-id").val();
-        $.ajax({
-          type: "POST",
-          url: "scores/create",
-          dataType: "json",
-          contentType: 'application/json',
-          data: JSON.stringify({ "score": { "score": theScore, "user_id": currentUserId } }),
-          success: function (data) {
-            console.log(theScore);
-            return false
-          },
-          error: function (data) {
-            return false
-          }
-        });
+        theUserScore();
         if(!alert('¡El tiempo ha terminado!' + ' Tu puntaje fue ' +  $("#user-score").text() )){window.location.reload();}
         clearInterval(counter);
       } 
