@@ -12,13 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
 
 $( document ).ready(function() {
   console.log('prev to AJAX get');
-  $.ajax({
+  var ajaxCall = (function(){
+      $.ajax({
     type: "GET",
     dataType: "html",
     url: "/scores/all_time_highscores",
@@ -63,6 +63,10 @@ $( document ).ready(function() {
   })
   .fail(function() {
     console.log('fail');
+    ajaxCall;
     debugger
-  });     
+  }); 
+  })();
+
+    
 });
