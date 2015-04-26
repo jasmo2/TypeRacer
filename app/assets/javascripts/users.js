@@ -22,6 +22,7 @@ function theGame(args) {
     return (word * Math.floor(100/textLength));
   }
 
+
   //text char
   var gWordArray = function (word) {
     return word.split('');
@@ -45,6 +46,8 @@ function theGame(args) {
       gameInput.css({
         "background" : "rgba(117,255,7,0)"
       });
+      //user score
+      $("#user-score").text(paso(this.textCount));
     }else if (eChar === wordArray[this.wordCount]){
       if ($gameInput.val().length === this.wordCount || this.wordCount + 1 == $gameInput.val().length)
       {

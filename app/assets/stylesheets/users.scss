@@ -35,12 +35,20 @@
   .game-timer {
     text-align: right;
     margin: 15px 0;
+    color: red;
   }
   .game-text {
     margin: 15px 0;
+    font-size: 18px;
   }
   .game-slider {
     position: relative;
+  }
+  h4 {
+    font-weight: bold;
+  }
+  #game-active-word {
+    font-size: 24px;
   }
   .hidden-div {
     position: absolute;
@@ -56,6 +64,9 @@
   }
   .no-block {
     font-weight: bold;
+  }
+  #user-score {
+    color: green;
   }
 }
 .la-modal {
