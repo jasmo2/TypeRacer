@@ -90,6 +90,7 @@ function theGame(args) {
 
   //preinitializer
   this.preinitializer = function() {
+    $("#game-input").attr("disabled", "true");
     var counter = 3;
     var span = document.getElementById("preinitializer-counter");
     setInterval(function() {
@@ -100,6 +101,7 @@ function theGame(args) {
       // Display 'counter' wherever you want to display it.
       if (counter === 0) {
         $(".la-modal").remove();
+        $("#game-input").removeAttr("disabled", "true").focus();
         initializer();
       } 
     }, 1000);
