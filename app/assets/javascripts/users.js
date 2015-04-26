@@ -66,7 +66,7 @@ function theGame(args) {
   this.$slider = $('#slider');
 
   // game timer
-  this.initializer = function(){
+  var initializer = function(){
     var getTime = function(sg) {
       var minutes = Math.floor(sg / 60);
       var leftover = sg - minutes * 60;
@@ -74,6 +74,21 @@ function theGame(args) {
       return (minutes + ':' + leftover);
     };
     var counter = 120;
+    var span = document.getElementById("game-timer-numbers");
+    setInterval(function() {
+      counter--;
+      if (counter >= 0) {
+        span.innerHTML = getTime(counter);
+      }
+      // Display 'counter' wherever you want to display it.
+      if (counter === 0) {
+          alert('el tiempo ha terminado');
+          clearInterval(counter);
+      } 
+    }, 1000);
+  };
+  this.preInitializer = function(){
+    var counter = 3;
     var span = document.getElementById("game-timer-numbers");
     setInterval(function() {
       counter--;
