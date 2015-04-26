@@ -85,7 +85,7 @@ function theGame(args) {
       }
       // Display 'counter' wherever you want to display it.
       if (counter === 0) {
-          alert('el tiempo ha terminado');
+          if(!alert('¡El tiempo ha terminado!' + ' Tu puntaje fue ' +  $("#user-score").text() )){window.location.reload();}
           clearInterval(counter);
       } 
     }, 1000);
