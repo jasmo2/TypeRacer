@@ -85,8 +85,25 @@ function theGame(args) {
       }
       // Display 'counter' wherever you want to display it.
       if (counter === 0) {
-          if(!alert('¡El tiempo ha terminado!' + ' Tu puntaje fue ' +  $("#user-score").text() )){window.location.reload();}
-          clearInterval(counter);
+        //guardar actual user score
+        var theScore = $("#user-score").text(),
+        currentUserId = $("#current-user-id").val();
+        $.ajax({
+          type: "POST",
+          url: "scores/create",
+          dataType: "json",
+          contentType: 'application/json',
+          data: JSON.stringify({ "score": { "score": theScore, "user_id": currentUserId } }),
+          success: function (data) {
+            console.log(theScore);
+            return false
+          },
+          error: function (data) {
+            return false
+          }
+        });
+        if(!alert('¡El tiempo ha terminado!' + ' Tu puntaje fue ' +  $("#user-score").text() )){window.location.reload();}
+        clearInterval(counter);
       } 
     }, 1000);
   };

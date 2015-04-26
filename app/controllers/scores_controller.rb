@@ -3,6 +3,7 @@ class ScoresController < ApplicationController
     @score = Score.new(scores_params)
     # @score.save
     @current_user = current_user
+    
   end
   def game
     @game = Game.order("RANDOM()").first
