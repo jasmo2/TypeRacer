@@ -119,6 +119,7 @@ function theGame(args) {
     }, 1000);
   };
 
+
   //preinitializer
   this.preinitializer = function() {
     $("#game-input").attr("disabled", "true");
@@ -137,5 +138,7 @@ function theGame(args) {
       } 
     }, 1000);
   };
+
+  
 }
 
