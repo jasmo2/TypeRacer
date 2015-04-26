@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #Authentication
 gem 'devise'
 
+gem 'faker', '~> 1.4.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -36,7 +37,7 @@ gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'rails_12factor', group: :production
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -49,6 +50,5 @@ group :development, :test do
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # Seed users
-  gem 'faker', '~> 1.4.3'
 end
 
