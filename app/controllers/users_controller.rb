@@ -8,4 +8,11 @@ class UsersController < ApplicationController
       render "landing"
     end
   end
+  def list
+    @users = User.all.order(username: :asc)
+  end
+  def show
+    @username =  User.find(params[:id]).username
+    @highscores = User.find(params[:id]).scores.order(score: :desc).first(10)
+  end
 end
