@@ -87,20 +87,25 @@ function theGame(args) {
       } 
     }, 1000);
   };
-  this.preInitializer = function(){
+
+
+  //preinitializer
+  this.preinitializer = function() {
     var counter = 3;
-    var span = document.getElementById("game-timer-numbers");
+    var span = document.getElementById("preinitializer-counter");
     setInterval(function() {
       counter--;
       if (counter >= 0) {
-        span.innerHTML = getTime(counter);
+        span.innerHTML = counter;
       }
       // Display 'counter' wherever you want to display it.
       if (counter === 0) {
-          alert('el tiempo ha terminado');
-          clearInterval(counter);
+        $(".la-modal").remove();
+        initializer();
       } 
     }, 1000);
   };
+
+  
 }
 
