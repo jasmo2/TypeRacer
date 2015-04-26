@@ -5,11 +5,33 @@ $( document ).ready(function() {
 });
 
 // game countdown
-function theGame() {
+function theGame(args) {
+  this.$text = args.text;
+  this.$gameInput = args.$gameInput;
+  var theText = this.$text
+  //text Array
+  this.textArray = function(){
+    var txt = theText.text()
+    , wordArray = txt.replace(/[^\w ]/g, "").split(/\s+/); 
+    return wordArray;
+  };
+
+  //text Length
+  var textLength = this.textArray().length;
+  this.paso = function(word) {
+    return (word * Math.floor(100/textLength));
+  }
+
+  //text char
+  this.wordArray = function (word) {
+    return word.split('');
+  };
+
   // slider
   this.$slider = $('#slider');
+
   // game timer
-  this.init = function(){
+  this.initializer = function(){
     var getTime = function(sg) {
       var minutes = Math.floor(sg / 60);
       var leftover = sg - minutes * 60;
@@ -27,8 +49,7 @@ function theGame() {
       if (counter === 0) {
           alert('el tiempo ha terminado');
           clearInterval(counter);
-      }
-      
+      } 
     }, 1000);
   };
 }
