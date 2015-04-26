@@ -4,6 +4,7 @@ function theGame(args) {
   this.$gameInput = args.gameInput;
   var gameInput = this.$gameInput;
   var $gameSlider = args.gameSlider;
+  var $gameActiveWord = args.gameActiveWord;
   var theText = this.$text
   this.wordCount = 0 , this.textCount = 0;
   //text Array
@@ -12,6 +13,8 @@ function theGame(args) {
     , wordArray = txt.replace(/[^\w ]/g, "").split(/\s+/); 
     return wordArray;
   };
+  // active word en inicio
+  $gameActiveWord.text(textArray()[0]);
 
   //text Length
   var textLength = textArray().length;
@@ -32,12 +35,13 @@ function theGame(args) {
       eChar = String.fromCharCode(eChar);
     }
     var wordArray = gWordArray(textArray()[this.textCount]);
-    if (newWord && e.which === 32 && this.wordCount == wordArray.length +1) {
+    if (newWord && e.which === 32 && this.wordCount == wordArray.length ) {
       // debugger
       this.$gameInput.val("");
       this.wordCount = 0;
       this.textCount += 1;
       $gameSlider.val(paso(this.textCount));
+      $gameActiveWord.text(textArray()[this.textCount]);
       gameInput.css({
         "background" : "rgba(117,255,7,0)"
       });
