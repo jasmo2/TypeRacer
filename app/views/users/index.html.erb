@@ -24,46 +24,20 @@
 			        </tr>
 			      </thead>
 			      <tbody>
-			        <tr>
-			          <td class="centered bold">1.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">2.</td>
-			          <td class="right">95</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">3.</td>
-			          <td class="right">80</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">4.</td>
-			          <td class="right">75</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">5.</td>
-			          <td class="right">70</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">6.</td>
-			          <td class="right">60</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">7.</td>
-			          <td class="right">50</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">8.</td>
-			          <td class="right">40</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">9.</td>
-			          <td class="right">30</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">10.</td>
-			          <td class="right">20</td>
-			        </tr>
+              <%if !@my_highscores.blank? %>
+                <% position = 0 %>
+                <% @my_highscores.each do |score| %>
+                  <tr>
+                    <td class="centered bold"><%= position +=1 %></td>
+                    <td class="right"><%= score.score %></td>
+                  </tr>
+                <% end  %>
+              <% else %>
+                <tr>
+                  <td class="centered bold">Atrevete</td>
+                  <td class="right">Sin Puntaje</td>
+                </tr>
+			        <% end %>
 			      </tbody>
 			    </table>
 			</div>
@@ -79,56 +53,22 @@
 			        </tr>
 			      </thead>
 			      <tbody>
-			        <tr>
-			          <td class="centered bold">1.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">2.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">3.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">4.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">5.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">6.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">7.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">8.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">9.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
-			        <tr>
-			          <td class="centered bold">10.</td>
-			          <td>Lorem ipsum dolor.</td>
-			          <td class="right">100</td>
-			        </tr>
+              <%if !@all_time_highscores.blank? %>
+                  <% position = 0 %>
+                  <% @all_time_highscores.each do |score| %>
+                    <tr>
+                      <td class="centered bold"><%= position +=1 %></td>
+                      <td><%= score.user.username %></td>
+                      <td class="right"><%= score.score %></td>
+                    </tr>
+                  <% end  %>
+                <% else %>
+                  <tr>
+                    <td class="centered bold">1.</td>
+                    <td>forever alone</td>
+                    <td class="right">no hay puntajes</td>
+                  </tr>
+              <% end %>
 			      </tbody>
 			    </table>
 			</div>
