@@ -1,27 +1,35 @@
 $('#play').hide().after('<%= j render "games/game" %>');
 var $gameInput = $("#game-input");
-var $gameText = $("#game-text");
-var $gameSlider = $("#slider");
-var $gameActiveWord = $("#game-active-word");
-var game = new theGame({text: $gameText, gameInput: $gameInput, gameSlider: $gameSlider, gameActiveWord: $gameActiveWord});
+var game = new theGame({text: $("#game-text"), gameInput: $gameInput, gameSlider: $("#slider"), gameActiveWord: $("#game-active-word")});
 
 //game.initializer();
-// $gameInput.keypress(function(e) {
-//   game.wordCheck(e);
-// });
-
-$gameInput.keyup(function(e){
-  if(e.keyCode === 8  && game.wordCount !== 0){
-    game.wordCount -= 1;
-    game.wordCheck(null, game.$gameInput.val().slice(-1).charCodeAt(0));
-    game.wordCount -= 1;
-  }else if(e.keyCode === 32){
-   game.wordCheck(e,null,true);
-  }else{
-    debugger
-    game.wordCheck(e);
+$gameInput.keypress(function(e) {
+   switch(e.keyCode){
+    case 8:
+    case 32:
+    case 16:
+    case 20:
+      break;
+    //Letters
+    default:
+       game.wordCheck(e);
+    break;
   }
-
 });
 
-
+$gameInput.keyup(function(e){
+  switch(e.keyCode){
+    case 8:
+      if (game.wordCount !== 0) {
+        game.wordCount -= 2;
+        game.wordCheck(null, game.$gameInput.val().slice(-1).charCodeAt(0));
+      };
+      break;
+    case 32:
+      game.wordCheck(e,null,true);
+      break;
+    //Letters
+    default:
+      break;
+  }
+});
