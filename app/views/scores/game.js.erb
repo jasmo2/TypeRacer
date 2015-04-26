@@ -2,40 +2,24 @@ $('#play').hide().after('<%= j render "games/game" %>');
 var $gameInput = $("#game-input");
 var $gameText = $("#game-text");
 var $gameSlider = $("#slider");
-var game = new theGame({text: $gameText, gameInput: $gameInput});
-var wordCount = 0 , textCount = 0;
+var game = new theGame({text: $gameText, gameInput: $gameInput, gameSlider: $gameSlider});
+
+var wordArray = [];
 //game.initializer();
 $gameInput.keypress(function(e) {
-  var eChar = String.fromCharCode(e.keyCode);
-  var wordArray = game.wordArray(game.textArray()[textCount]);
-  if (e.which === 32 && wordCount == wordArray.length ) {
-    wordCount = 0;
-    textCount ++;
-    $gameSlider.val(game.paso(textCount));
-    $gameInput.css({
-      "background" : "rgba(117,255,7,0)"
-    });
-  }else if (eChar === wordArray[wordCount] && $(this).val().length === wordCount) {
-    wordCount++;
-    $gameInput.css({
-      "background" : "rgba(117,255,7,0.4)"
-    });
-  }else{
-    wordCount++;
-    $gameInput.css({
-      "background" : "rgba(255,7,7,0.4)"
-    });
-  };  
+  game.wordCheck(e);
 });
 
 $gameInput.keyup(function(e){
-  if(e.keyCode === 8  && wordCount !== 0){
-    wordCount--;
+  if(e.keyCode === 8  && game.wordCount !== 0){
+    game.wordCount -= 1;
+    game.wordCheck(null, game.$gameInput.val().slice(-1).charCodeAt(0));
+    game.wordCount -= 1;
   }
-  if(e.keyCode === 32 ){
-    $gameInput.val("");
-    $gameInput.val().replace(/[^\w ]/g, "");
-    //debugger
+  if(e.keyCode === 32){
+   game.wordCheck(e,null,true);
   }
-
 });
+$gameInput.keydown(function(e) {
+})
+
