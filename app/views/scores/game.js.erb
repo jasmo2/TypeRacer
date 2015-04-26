@@ -2,6 +2,9 @@ $('#play').hide().after('<%= j render "games/game" %>');
 var $gameInput = $("#game-input");
 var game = new theGame({text: $("#game-text"), gameInput: $gameInput, gameSlider: $("#slider"), gameActiveWord: $("#game-active-word")});
 
+// dispara modal
+$(".la-modal").show();
+game.preinitializer();
 //game.initializer();
 $gameInput.keypress(function(e) {
    switch(e.keyCode){
@@ -33,3 +36,5 @@ $gameInput.keyup(function(e){
       break;
   }
 });
+
+
