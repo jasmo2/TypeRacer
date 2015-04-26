@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   authenticated :user do
     get 'game', to: 'scores#game', as: :game
+    get 'users/list' => 'users#list'
+    resources :users, only: [:show]
     post 'scores/create'
+    get 'scores/all_time_highscores'
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
